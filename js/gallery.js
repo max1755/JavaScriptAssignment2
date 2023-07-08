@@ -6,8 +6,10 @@
 */
 
 const displayedImage = document.getElementById("bigPicture"); //the 'featured' (selected) image
-const ul = document.getElementById("thumbnails"); //the smaller images (thumbnails)
+const ul = document.getElementById("thumbnails"); //the thumbnail image ul
+const thumbnailImages = ul.getElementsByClassName("thumbnail"); //the thumbnail images
 const caption = document.querySelector("figcaption"); //figcaption
+const random = document.getElementById('random'); //button
 
 //Function for setting the main/featured image in the gallery
 function mainImage(source) {
@@ -22,9 +24,9 @@ ul.addEventListener("click", function (e) {
     mainImage(imageName); //passing the string to the function to feature the selected image
     caption.innerHTML = e.target.alt; //updating the caption
   }
-});
+})
 
-// Adding dynamism to the image gallery
+// Adding dynamism to the image gallery //
 // Array of images with interesting info
 const images = [
   {
@@ -72,17 +74,36 @@ for (let i = 0; i < images.length; i++) {
   ul.appendChild(li);
 }
 
-// setting the grayscale effect for thumbnails //
+// other functions and image effects //
+// setting the grayscale effect for thumbnails when clicking through gallery//
 ul.addEventListener("click", function (e) {
   if (e.target.tagName === "IMG") {
-    const thumbnailImages = ul.getElementsByClassName("thumbnail"); // removing active class from all thumbnail images
-    for (var j = 0; j < thumbnailImages.length; j++) {
-      thumbnailImages[j].classList.remove("active");
-    }
-
+     // removing active class from all thumbnail images
+    removeActive();
     // applying active class to the clicked image
     e.target.classList.add("active");
   }
-});
+})
 
-caption.innerHTML = images[0].caption; //caption for initial image on page
+//selecting a random image to view
+random.addEventListener("click", function (){
+  let i = [Math.floor(Math.random() * images.length)] //generating the random image index
+  imageName = images[i].src; //selecting a random image from array
+  imageName = imageName.toString().replace("small", "large");
+  mainImage(imageName);
+  caption.innerHTML = images[i].caption; //updating caption
+  removeActive();
+  thumbnailImages[i].classList.add("active");
+})
+
+// removes active class from all thumbnail images, used for grayscale effect
+function removeActive(){
+  for (var j = 0; j < thumbnailImages.length; j++) {
+   thumbnailImages[j].classList.remove("active");
+ }
+}
+
+//initial settings
+
+thumbnailImages[0].classList.add("active");
+caption.innerHTML = images[0].caption; 
