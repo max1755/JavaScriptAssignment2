@@ -1,0 +1,54 @@
+
+body{
+  background-color: #ADD8E6;
+}
+h1{
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Lobster', cursive;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
+#bigPicture{
+  display: block;
+  width: 60%;
+  height: auto;
+  margin: 0 auto;
+}
+
+
+img:not(#bigPicture){
+  float: left;
+  padding: 2%;
+  place-items: center;
+  
+}
+.thumbnail{
+  filter: grayscale(100%);
+  
+}
+.thumbnail.active {
+  filter: none;
+}
+.thumbnail{
+  filter: grayscale(100%);
+  
+}
+.thumbnail.active {
+  filter: none;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li{
+  color: black;
+}
+figcaption{
+  text-align: center;
+  font-size: 20px;
+  font-family: 'Lobster', cursive;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+}
